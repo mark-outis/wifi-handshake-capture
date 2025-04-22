@@ -1,0 +1,9 @@
+**/__pycache__/
+.idea
+.conda
+.pdf
+.cap
+.csv
+.vscode/*
+.netxml
+/output/*
