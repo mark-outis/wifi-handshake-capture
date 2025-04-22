@@ -65,9 +65,13 @@ class Scan:
         monitor_mode_process = Process(get_interfaces_params)
         _, stdout = await monitor_mode_process.see_end_result_process(
             'get interfaces')
+        interfaces = []
+
+        if not stdout:
+            return interfaces
+
         interfaces_str = stdout.split("\n")
 
-        interfaces = []
         for iface in interfaces_str:
             text = iface.strip()
             if "Interface" in text:
@@ -164,7 +168,7 @@ class Scan:
         targets_table.add_column("Encryption ", style="bold green")
 
         for target in indexed_targets:
-            
+
             traffic = "Yes" if int(target['#Data,']) > 0 else "No"
 
             data_packets = int(target['#Data,'])
